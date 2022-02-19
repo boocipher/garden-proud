@@ -20,9 +20,13 @@ const seedDatabase = async () => {
   });
 
   for (let i=0; i<10; i++) {
+    const userId = Math.floor(Math.random() * users.length);
+    const gardenId = Math.floor(Math.random() * plants.length);
+    console.log(`Will create garden with userId:${userId}, gardenId:${gardenId}`);
+
     await Garden.create({
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-      plant_id: plants[Math.floor(Math.random() * plants.length)].id
+      user_id: users[userId].id,
+      plant_id: plants[gardenId].id
     }, {
       fields: ["user_id", "plant_id"]
     })
